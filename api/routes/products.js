@@ -12,6 +12,7 @@ router.post('/', (req, res, next) => {
     message: 'handling POST to /products',
   });
 });
+
 router.get('/:productId', (req, res, next) => {
   const id = req.params.productId;
 
@@ -25,6 +26,20 @@ router.get('/:productId', (req, res, next) => {
       message: 'you passed an ID',
     });
   }
+});
+
+router.patch('/:productId', (req, res, next) => {
+  const id = req.params.productId;
+  res.status(200).json({
+    message: 'updated product',
+  });
+});
+
+router.delete('/:productId', (req, res, next) => {
+  const id = req.params.productId;
+  res.status(200).json({
+    message: 'delete product',
+  });
 });
 
 module.exports = router;
