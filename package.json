@@ -1,0 +1,27 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "A Node.js RESTful API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dorlugasigal/node.js-practice-REST-API.git"
+  },
+  "keywords": [
+    "node",
+    "restful",
+    "api"
+  ],
+  "author": "Dor Lugasi-Gal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dorlugasigal/node.js-practice-REST-API/issues"
+  },
+  "homepage": "https://github.com/dorlugasigal/node.js-practice-REST-API#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
