@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
     })
     .catch(error => {
       console.log(error);
-      res.status(500).json({error});
+      res.status(500).json({ error });
     });
 });
 
@@ -56,7 +56,7 @@ router.get('/:productId', (req, res, next) => {
       if (!doc) {
         res
           .status(404)
-          .json({message: 'No valid entry found for provided ID'});
+          .json({ message: 'No valid entry found for provided ID' });
       } else {
         console.log('From Database', doc);
         res.status(200).json(doc);
@@ -64,20 +64,20 @@ router.get('/:productId', (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
     });
 });
 
 router.patch('/:productId', (req, res, next) => {
   const id = req.params.productId;
-  res.status(200).json({
-    message: 'updated product',
-  });
-});
 
-router.delete('/:productId', (req, res, next) => {
-  const id = req.params.productId;
-  Product.remove({_id: id})
+  const updateOps = {};
+  for (const ops of req.body) {
+    updateOps[ops.propName] = ops.value;
+  }
+  console.log(updateOps);
+
+  Product.update({ _id: id }, { $set: updateOps })
     .exec()
     .then(results => {
       console.log(results);
@@ -85,7 +85,21 @@ router.delete('/:productId', (req, res, next) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({error: err});
+      res.status(500).json({ error: err });
+    });
+});
+
+router.delete('/:productId', (req, res, next) => {
+  const id = req.params.productId;
+  Product.remove({ _id: id })
+    .exec()
+    .then(results => {
+      console.log(results);
+      res.status(200).json(results);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: err });
     });
 });
 
